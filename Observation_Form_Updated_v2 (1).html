@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comprehensive Observation Form - Acronyms Update</title>
+<style>
+  :root { 
+    --navy: #1F3864; --light: #D6E4F0; --grey: #f4f6f9; 
+    --warn: #c0392b; --ok: #1e7e34; --accent: #2e5b9e; --sub-bg: #eaf1f8;
+  }
+  * { box-sizing: border-box; }
+  body { font-family: Arial, Helvetica, sans-serif; margin: 0; background: var(--grey); color: #222; font-size: 13.5px; line-height: 1.4; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 16px; }
+  header { background: var(--navy); color: #fff; padding: 20px 24px; border-radius: 8px 8px 0 0; }
+  header h1 { margin: 0; font-size: 22px; text-transform: uppercase; }
+  header p { margin: 6px 0 0; font-size: 13px; opacity: .9; }
+  .card { background: #fff; padding: 20px 24px; border: 1px solid #dde3ec; border-top: none; }
+  .info { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 24px; margin-bottom: 16px; }
+  .info label { font-weight: bold; font-size: 12px; display: block; margin-bottom: 5px; color: var(--navy); }
+  .info input, .info select { width: 100%; padding: 8px 10px; border: 1px solid #bbb; border-radius: 4px; font-size: 13px; }
+  .info select { background: #fffde6; border-color: var(--navy); font-weight: bold; color: var(--navy); }
+  .info input:focus, .info select:focus { outline: 2px solid var(--navy); }
+  
+  .legend { font-size: 12.5px; background: #fffbe6; border: 1px solid #f0e2a0; padding: 12px 14px; border-radius: 6px; margin: 16px 0; color: #444; }
+  
+  .scoring-guide { background: #fff; border: 1px solid #dde3ec; border-radius: 6px; margin-bottom: 16px; overflow: hidden; }
+  .sg-header { background: var(--navy); color: #fff; padding: 10px 14px; font-size: 13px; font-weight: bold; text-transform: uppercase; }
+  .sg-content { display: flex; flex-wrap: wrap; }
+  .sg-item { flex: 1; min-width: 19%; padding: 12px; border-right: 1px solid #dde3ec; font-size: 12px; }
+  .sg-item:last-child { border-right: none; }
+  .sg-item.k { background: #ffebee; }
+  .sg-item.y { background: #fff3e0; }
+  .sg-item.d { background: #e8f5e9; }
+  .sg-item.t { background: #e3f2fd; }
+  .sg-item.x { background: #f3e5f5; }
+  .sg-score { font-size: 15px; font-weight: bold; color: var(--navy); margin-bottom: 6px; display: block; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 4px;}
+  .sg-desc { color: #444; line-height: 1.4; }
+
+  table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  th, td { border: 1px solid #ccd4e0; padding: 8px 10px; vertical-align: middle; text-align: left; }
+  th { background: var(--navy); color: #fff; font-size: 13px; text-transform: uppercase; }
+  .sec td { background: var(--light); font-weight: bold; font-size: 14px; color: var(--navy); text-transform: uppercase; }
+  .sub-heading-row td.sub-title { background-color: var(--sub-bg); color: var(--navy); font-weight: bold; font-size: 12.5px; padding: 6px 10px; border-right: none; }
+  .sub-heading-row td.score-empty { background-color: var(--sub-bg); border-left: none; }
+  .crit { font-size: 13px; vertical-align: middle; padding-left: 20px !important; color: #333; }
+  td.score { width: 90px; text-align: center; }
+  td.savg { width: 90px; text-align: center; font-weight: bold; background: #fafcff; font-size: 16px; color: var(--navy); }
+  input.sc { width: 60px; padding: 6px; text-align: center; border: 2px solid #e6c200; background: #fffde6; border-radius: 4px; font-size: 14px; font-weight: bold; }
+  input.sc:focus { outline: 2px solid var(--navy); background: #fff; }
+  
+  .feedback-box { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
+  .feedback-box:last-child { margin-bottom: 0; }
+  .fb-label { font-size: 12px; font-weight: bold; }
+  .fb-strong { color: var(--ok); }
+  .fb-weak { color: var(--warn); }
+  textarea.cm { width: 100%; min-height: 60px; border: 1px solid #ccc; border-radius: 4px; font-size: 13px; padding: 8px; font-family: inherit; resize: vertical; display: block; }
+  textarea.cm:focus { outline: 1px solid var(--navy); border-color: var(--navy); }
+
+  .totals { display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
+  .tot-box { flex: 1; min-width: 230px; background: var(--light); border-radius: 8px; padding: 16px 20px; }
+  .tot-box .num { font-size: 32px; font-weight: bold; color: var(--navy); margin-top: 5px; }
+  .tot-box .lbl { font-size: 12px; font-weight: bold; color: var(--navy); text-transform: uppercase; }
+  #overall-result { font-size: 20px; font-weight: bold; margin-top: 6px; color: var(--navy); }
+  .recommendation { margin-top: 20px; background: #fafbfc; border: 1px solid #dde3ec; border-radius: 6px; padding: 16px 20px; }
+  .recommendation h3 { margin: 0 0 10px 0; font-size: 14.5px; color: var(--navy); text-transform: uppercase;}
+  .recommendation textarea { width: 100%; min-height: 80px; border: 1px solid #ccc; border-radius: 4px; padding: 10px; font-family: inherit; font-size: 13.5px; }
+  .btns { margin: 24px 0; display: flex; gap: 12px; justify-content: center; }
+  button { background: var(--navy); color: #fff; border: none; padding: 12px 24px; border-radius: 6px; font-size: 14px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+  button:hover { background: var(--accent); }
+  button.alt { background: #666; }
+  button.alt:hover { background: #444; }
+  @media print {
+    .btns, .legend { display: none; }
+    body { background: #fff; font-size: 12px; }
+    .wrap { padding: 0; width: 100%; max-width: 100%; }
+    .card { border: none; padding: 0; }
+    textarea.cm, input, select { border: 1px solid #999; }
+    .sg-item { border: 1px solid #ccc !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Foreign Teacher Observation Form</h1>
+    <p>Phiếu Đánh Giá Dự Giờ (Tích hợp Phương pháp Acronyms: SMART, TALK, CARE...)</p>
+  </header>
+
+  <div class="card">
+    <div class="info">
+      <div>
+        <label>Class Program (Chương trình)</label>
+        <select id="test-type">
+          <option value="adults">Adults / IELTS / Gen. English</option>
+          <option value="kids">Kids / Teens / YLE</option>
+        </select>
+      </div>
+      <div><label>Teacher's Name (Tên Giáo viên)</label><input placeholder="Mr. / Ms. ..."></div>
+      <div><label>Class & Level (Lớp & Trình độ)</label><input placeholder="e.g., KET, IELTS 5.0, Starter..."></div>
+      
+      <div><label>Date (Ngày dự giờ)</label><input type="date"></div>
+      <div><label>Lesson Focus (Trọng tâm bài)</label><input placeholder="e.g., Reading & Vocabulary"></div>
+      <div><label>Observer (Người dự giờ)</label><input placeholder="Academic Coordinator..."></div>
+    </div>
+
+    <div class="legend" id="legend-text"></div>
+
+    <div class="scoring-guide">
+      <div class="sg-header">Scoring Guide (Hệ quy chiếu Điểm số 1-5)</div>
+      <div class="sg-content">
+        <div class="sg-item k">
+          <span class="sg-score">1 - Poor</span>
+          <span class="sg-desc">Severe issues. Heavy TTT, lacks ICQ/CCQ entirely, poor instructions. (Lỗi nghiệp vụ nặng).</span>
+        </div>
+        <div class="sg-item y">
+          <span class="sg-score">2 - Below Standard</span>
+          <span class="sg-desc">Inconsistent. Attempts techniques but poorly executed. (Có áp dụng nhưng lúng túng, sai phương pháp).</span>
+        </div>
+        <div class="sg-item d">
+          <span class="sg-score">3 - Pass / Standard</span>
+          <span class="sg-desc">Competent. Safe lesson, meets center's basic expectations. (Đạt chuẩn, bài giảng an toàn).</span>
+        </div>
+        <div class="sg-item t">
+          <span class="sg-score">4 - Merit / Good</span>
+          <span class="sg-desc">Strong skills. High STT, proper task staging (Pre/While/Post), clear ICQs. (Kỹ năng tốt, triển khai bài logic).</span>
+        </div>
+        <div class="sg-item x">
+          <span class="sg-score">5 - Distinction</span>
+          <span class="sg-desc">Outstanding. Perfect balance of TTT/STT, highly engaging, fully student-centered. (Xuất sắc, truyền cảm hứng).</span>
+        </div>
+      </div>
+    </div>
+
+    <table id="tbl">
+      <thead>
+        <tr>
+          <th style="width: 45%">Evaluation Criteria (Tiêu chí đánh giá chuyên môn)</th>
+          <th style="width: 10%; text-align: center;" id="score-header">Score</th>
+          <th style="width: 10%; text-align: center;">Average</th>
+          <th style="width: 35%">Observer's Comments (Bằng chứng cụ thể)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- JS render -->
+      </tbody>
+    </table>
+
+    <div class="totals">
+      <div class="tot-box">
+        <div class="lbl">Raw Score (Điểm trung bình)</div>
+        <div class="num"><span id="avg-raw">0.00</span></div>
+      </div>
+      <div class="tot-box">
+        <div class="lbl" id="overall-lbl">Final Grade (Xếp loại)</div>
+        <div id="overall-result">Pending</div>
+      </div>
+    </div>
+
+    <div class="recommendation">
+      <h3>Action Plan & Feedback Summary (Kế hoạch Cải thiện)</h3>
+      <textarea placeholder="- Overall Summary (Đánh giá chung): ...&#10;- Suggestions for next lesson (Gợi ý bài sau): ..."></textarea>
+    </div>
+
+    <div class="btns">
+      <button onclick="window.print()">🖨 Print / Save PDF</button>
+      <button class="alt" onclick="clearForm()">Reset Form (Xóa trắng)</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// --- DATABASE TÍCH HỢP HỆ THỐNG ACRONYMS MỚI (TALK, CORE, READ, IDEA, CARE, SMART, MOVE, PLAY, STEP) ---
+const TEST_DATA = {
+  adults: {
+    min: 1, max: 5, step: 0.5,
+    legend: "<b>BÍ KÍP DỰ GIỜ:</b> Dùng các từ viết tắt <b>[TALK], [CORE], [READ], [IDEA], [CARE], [SMART]</b> để ghi chú nhanh vào ô Nhận xét.",
+    sections: [
+      ["[TALK] 1. Language & Management", [
+        { title: "T & A (Language)", items: ["<b>T</b>argeted Language: Sử dụng ngôn ngữ phù hợp trình độ (Graded language)", "<b>A</b>ctive STT: Tối đa thời gian học viên nói, giảm thiểu TTT"] },
+        { title: "L & K (Instructions)", items: ["<b>L</b>ead by Example: Luôn làm mẫu (Modeling) trước khi bắt đầu", "<b>K</b>nowledge Check: Dùng ICQ để kiểm tra học viên hiểu lệnh"] }
+      ]],
+      ["[CORE] 2. Teaching Vocab & Grammar", [
+        { title: "C & O (Meaning)", items: ["<b>C</b>ontextual Eliciting: Khơi gợi ngôn ngữ từ ngữ cảnh, không dịch", "<b>O</b>bligatory CCQs: Bắt buộc dùng CCQ thay vì hỏi 'Do you understand?'"] },
+        { title: "R & E (Practice)", items: ["<b>R</b>ules of MPF: Tuân thủ trình tự Meaning -> Pronunciation -> Form", "<b>E</b>xecute Practice: Tổ chức luyện tập có kiểm soát (Controlled) và tự do (Free)"] }
+      ]],
+      ["[READ] 3. Receptive Skills (Nghe/Đọc)", [
+        { title: "R & E (Pre/While)", items: ["<b>R</b>eady the Learners: Dạy từ khóa (Block vocab) & Khơi gợi dự đoán (Prediction)", "<b>E</b>xecute Limits: Giao task rõ ràng (Gist/Detail) và ép thời gian nghiêm ngặt"] },
+        { title: "A & D (Post)", items: ["<b>A</b>ssess Logically: Chữa bài logic, yêu cầu tìm dẫn chứng (Where is the proof?)", "<b>D</b>iscuss Further: Có hoạt động Nói liên hệ thực tế (Follow-up speaking)"] }
+      ]],
+      ["[IDEA] 4. Productive Skills (Nói/Viết)", [
+        { title: "I & D (Pre/While)", items: ["<b>I</b>nput & Brainstorm: Cung cấp ý tưởng và cấu trúc nền/bài mẫu (Model Texts)", "<b>D</b>riven Purpose: Bài tập Nói/Viết có mục đích thực tế rõ ràng"] },
+        { title: "E & A (Monitor/Post)", items: ["<b>E</b>ncourage Fluency: Hỗ trợ nhưng không ngắt lời làm đứt mạch trôi chảy", "<b>A</b>nalyze Content: Phản hồi về NỘI DUNG trước khi soi lỗi ngôn ngữ"] }
+      ]],
+      ["[CARE] 5. Correction & Rapport", [
+        { title: "C & A (Correction)", items: ["<b>C</b>orrection Timing: Sửa lỗi tức thì (Accuracy) hoặc trì hoãn (Fluency) đúng lúc", "<b>A</b>utonomy: Khuyến khích học viên tự sửa lỗi (Self) hoặc nhờ bạn (Peer)"] },
+        { title: "R & E (Engagement)", items: ["<b>R</b>apport: Tương tác thân thiện, tạo sự gắn kết tốt với học viên", "<b>E</b>ngagement: Truyền cảm hứng, duy trì sự hứng thú xuyên suốt bài"] }
+      ]],
+      ["[SMART] 6. Competencies & Cambridge", [
+        { title: "S & M (Planning)", items: ["<b>S</b>tructured Plan: Bài giảng có mục tiêu (Aims) và các bước (Procedures) logic", "<b>M</b>astery: GV dùng tiếng Anh chuẩn, giải thích từ vựng/ngữ pháp chính xác"] },
+        { title: "A, R & T (Dynamics)", items: ["<b>A</b>ctivity Dynamics: Luân phiên tĩnh/động hợp lý, CÓ REFLECT sau khi chơi", "<b>R</b>oom Mgt: Bao quát lớp, phân bổ thời gian và chia nhóm/cặp hiệu quả", "<b>T</b>est Alignment: Handouts, games bám sát định dạng đề thi Cambridge"] }
+      ]]
+    ]
+  },
+  kids: {
+    min: 1, max: 5, step: 0.5,
+    legend: "<b>BÍ KÍP DỰ GIỜ:</b> Dùng các từ viết tắt <b>[MOVE], [PLAY], [STEP], [SMART]</b> để ghi chú nhanh vào ô Nhận xét.",
+    sections: [
+      ["[MOVE] 1. TPR & Management", [
+        { title: "M & O (Rules)", items: ["<b>M</b>odel & ICQ: Làm mẫu và dùng ICQ siêu đơn giản cho mọi trò chơi", "<b>O</b>rganize Behavior: Quản lý kỷ luật công bằng bằng điểm thưởng (Stars)"] },
+        { title: "V & E (Energy)", items: ["<b>V</b>ibe & Energy: Năng lượng bùng nổ, nhịp độ nhanh, không có thời gian chết", "<b>E</b>xpressive TPR: Sử dụng ngôn ngữ cơ thể, nét mặt minh họa xuất sắc"] }
+      ]],
+      ["[PLAY] 2. Vocab & Games", [
+        { title: "P & L (Present)", items: ["<b>P</b>resent Visually: Dạy từ sinh động bằng thẻ tranh hoặc vật thật (Realia)", "<b>L</b>oud & Quiet: Luyện âm đa dạng, sôi nổi (Đồng thanh, cá nhân, to/nhỏ)"] },
+        { title: "A & Y (Practice)", items: ["<b>A</b>im for Language: Trò chơi bắt buộc trẻ PHẢI NÓI, không chỉ chơi cho vui", "<b>Y</b>ield STT: Tương tác liên tục để tối đa hóa thời gian phát biểu của trẻ"] }
+      ]],
+      ["[STEP] 3. Young Learner Skills", [
+        { title: "S & T (Output)", items: ["<b>S</b>caffolding: Hỗ trợ từng bước (cầm tay chỉ việc) khi trẻ tập viết/vẽ", "<b>T</b>alk in Sentences: Luôn khuyến khích và uốn nắn trẻ trả lời nguyên câu"] },
+        { title: "E & P (Input)", items: ["<b>E</b>ye Check: Kiểm tra độ hiểu bài qua hình ảnh, hành động chỉ trỏ", "<b>P</b>honics & Sounds: Chú ý sửa âm cuối (Ending sounds) & dạy đánh vần"] }
+      ]],
+      ["[SMART] 4. Competencies & Cambridge", [
+        { title: "S & M (Planning)", items: ["<b>S</b>tructured Plan: Bài giảng có mục tiêu (Aims) và các bước (Procedures) logic", "<b>M</b>astery: GV dùng tiếng Anh chuẩn, phát âm chính xác, khẩu hình rõ"] },
+        { title: "A, R & T (Dynamics)", items: ["<b>A</b>ctivity Dynamics: Luân phiên tĩnh/động hợp lý (Stirrers & Settlers)", "<b>R</b>oom Mgt: Bao quát lớp, xử lý tình huống khéo léo, an toàn", "<b>T</b>est Alignment: Trò chơi, bài tập bám sát đề thi Cambridge YLE"] }
+      ]]
+    ]
+  }
+};
+
+const tbody = document.querySelector("#tbl tbody");
+const testTypeSelector = document.getElementById("test-type");
+
+function renderTable() {
+  const selectedType = testTypeSelector.value;
+  const data = TEST_DATA[selectedType];
+  
+  document.getElementById("legend-text").innerHTML = data.legend;
+  document.getElementById("score-header").textContent = `Score (${data.min}-${data.max})`;
+  tbody.innerHTML = ""; 
+
+  data.sections.forEach((sec, si) => {
+    const [title, subCategories] = sec;
+    const trSec = document.createElement("tr");
+    trSec.className = "sec";
+    trSec.innerHTML = `<td colspan="4">${title}</td>`;
+    tbody.appendChild(trSec);
+
+    let totalRows = 0;
+    subCategories.forEach(sub => { totalRows += 1 + sub.items.length; });
+
+    let isFirstRowInSection = true;
+    subCategories.forEach(sub => {
+      const trSub = document.createElement("tr");
+      trSub.className = "sub-heading-row";
+      
+      let rightCols = "";
+      if (isFirstRowInSection) {
+        rightCols = `
+          <td class="savg" rowspan="${totalRows}" id="avg${si}">—</td>
+          <td rowspan="${totalRows}" style="vertical-align: top;">
+            <div class="feedback-box">
+              <span class="fb-label fb-strong">Strengths (Điểm tốt)</span>
+              <textarea class="cm" placeholder="Detail effective techniques used..."></textarea>
+            </div>
+            <div class="feedback-box">
+              <span class="fb-label fb-weak">To Improve (Cần cải thiện)</span>
+              <textarea class="cm" placeholder="Areas needing pedagogical focus..."></textarea>
+            </div>
+          </td>
+        `;
+        isFirstRowInSection = false;
+      }
+
+      trSub.innerHTML = `<td class="sub-title">${sub.title}</td><td class="score-empty"></td>${rightCols}`;
+      tbody.appendChild(trSub);
+
+      sub.items.forEach(itemText => {
+        const trItem = document.createElement("tr");
+        trItem.innerHTML = `
+          <td class="crit">• ${itemText}</td>
+          <td class="score">
+            <input class="sc" data-sec="${si}" type="number" min="${data.min}" max="${data.max}" step="${data.step}" inputmode="decimal">
+          </td>
+        `;
+        tbody.appendChild(trItem);
+      });
+    });
+  });
+  calc();
+}
+
+function getGrading(score) {
+    if (score < 3.0) return "Fail (Không đạt)";
+    if (score < 4.0) return "Pass (Đạt chuẩn)";
+    if (score < 4.5) return "Merit (Khá - Tốt)";
+    return "Distinction (Xuất sắc)";
+}
+
+function calc() {
+  const selectedType = testTypeSelector.value;
+  let sumSectionScores = 0;
+  let activeSections = 0;
+
+  TEST_DATA[selectedType].sections.forEach((_, si) => {
+    const inputs = [...document.querySelectorAll(`.sc[data-sec="${si}"]`)];
+    const vals = inputs.map(i => parseFloat(i.value)).filter(v => !isNaN(v));
+    const avgEl = document.getElementById("avg" + si);
+
+    if (vals.length > 0) {
+      let avg = vals.reduce((a, b) => a + b, 0) / vals.length;
+      avgEl.textContent = avg.toFixed(1);
+      sumSectionScores += avg;
+      activeSections++;
+    } else {
+      avgEl.textContent = "—";
+    }
+  });
+
+  const rawAvgEl = document.getElementById("avg-raw");
+  const overallResultEl = document.getElementById("overall-result");
+
+  if (activeSections > 0) {
+    let rawAvg = sumSectionScores / activeSections;
+    rawAvgEl.textContent = rawAvg.toFixed(2);
+    overallResultEl.textContent = getGrading(rawAvg);
+  } else {
+    rawAvgEl.textContent = "0.00";
+    overallResultEl.textContent = "Pending";
+  }
+}
+
+function clearForm() {
+  if(confirm('Clear all scores and comments? (Xóa toàn bộ dữ liệu?)')){
+    document.querySelectorAll('.sc').forEach(i => i.value = '');
+    document.querySelectorAll('.cm').forEach(t => t.value = '');
+    calc();
+  }
+}
+
+testTypeSelector.addEventListener("change", renderTable);
+document.addEventListener("input", e => { if (e.target.classList.contains("sc")) calc(); });
+
+renderTable();
+</script>
+</body>
+</html>
